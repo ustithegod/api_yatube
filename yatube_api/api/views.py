@@ -4,7 +4,6 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 
 from django.core.exceptions import PermissionDenied
-from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
 from posts.models import Post, Group, Comment
@@ -46,7 +45,10 @@ class CommentList(APIView):
         try:
             post = get_object_or_404(Post, id=post_id)
         except Post.DoesNotExist:
-            return Response({'error': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {'error': 'Post not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
 
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():

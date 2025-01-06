@@ -14,6 +14,7 @@ router.register('groups', GroupViewSet)
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
     path('posts/<int:post_id>/comments/', CommentList.as_view()),
-    path('posts/<int:post_id>/comments/<int:comment_id>/', CommentDetail.as_view()),
+    path('posts/<int:post_id>/comments/<int:comment_id>/',
+         CommentDetail.as_view()),
     path('', include(router.urls)),
 ]
