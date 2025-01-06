@@ -26,11 +26,11 @@ class GroupSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Такой группы не существует!')
         return value
 
+
 class CommentSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     post = serializers.PrimaryKeyRelatedField(read_only=True)
     text = serializers.CharField(required=True)
-
 
     class Meta:
         model = Comment
